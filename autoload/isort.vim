@@ -101,7 +101,7 @@ def Isort():
         for j, window in enumerate(tabpage.windows):
           if window.valid and window.buffer == current_buffer:
             cursors.append((i, j, window.cursor))
-    vim.current.buffer[:] = new_buffer_str.split('\n')
+    vim.current.buffer[:] = new_buffer_str.split('\n')[:-1]
     for i, j, cursor in cursors:
       window = vim.tabpages[i].windows[j]
       try:

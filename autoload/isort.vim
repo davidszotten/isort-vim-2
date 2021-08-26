@@ -80,13 +80,15 @@ if _initialize_isort_env():
 
 def Isort():
   start = time.time()
-  config = isort.Config(settings_path=vim.eval("getcwd()"))
-  quiet = vim.eval('g:isort_quiet')
+  settings_path = vim.eval("getcwd()")
+  config = isort.Config(settings_path=settings_path)
+  quiet = 1
 
   buffer_str = '\n'.join(vim.current.buffer) + '\n'
   try:
       new_buffer_str = isort.code(
         buffer_str,
+        config=config,
       )
       if new_buffer_str == buffer_str:
         if not quiet:
